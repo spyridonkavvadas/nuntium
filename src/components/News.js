@@ -1,5 +1,5 @@
 
-import { Container, Card } from 'react-bootstrap'
+import { Container, Row, Col,  Card, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,65 +7,107 @@ import axios from 'axios';
 
 export default function News() {
     // Empty array in useState
-   const [articles, setArticles] = useState([]);
- 
-      
-    useEffect(() => {
+    //const [isLoading, setLoading] = useState(true);
+    const [articles, setArticles] = useState([]);
+    const [isLoading, setLoading] = useState(true);
 
+    useEffect(() => {
+        //const API_KEY = '0c71072a6c3a4878b1d35cc733032ade';
         const options = {
             method: 'GET',
-            url: 'https://newsapi.org/v2/everything?q=apple&from=2021-12-11&to=2021-12-11&sortBy=popularityhttps://newsapi.org/v2/everything?q=apple&from=2021-12-11&to=2021-12-11&sortBy=popularity&apiKey=0c71072a6c3a4878b1d35cc733032ade'
-            //,
-            // params: {lang: 'en', country: 'US'},
+            url: 'http://localhost:5000/news'
+            // ,
+            // params: {access_key: 'bc9a37a661bd0084e1af273d5c732ef3', languages: 'en', countries: 'us', limit: '30'}
+            // ,
             // headers: {
-            //   'x-rapidapi-host': 'https://newsapi.org',
-            //   'x-rapidapi-key': '0c71072a6c3a4878b1d35cc733032ade'
+            //   'x-rapidapi-host': 'google-news.p.rapidapi.com',
+            //   'x-rapidapi-key': '4b9c29964amshe4bdc3028b52ceap19c2dbjsn674d54c53ed5'
             // }
           };
-         
+
+
           axios.request(options)
            .then(function (response) {
-            console.log(response.data)
+          // console.log(response.data)
             setArticles(response.data)
+            setLoading(false);
           }).catch(function (error) {
               console.error(error);
-          });  
-          
-        console.log(articles);
-        
-    }, [articles])
+          });
 
-    //convert the result Object to array 
-    const result = Object.keys(articles).map((key) => articles[key]);
-    console.log(result);
+        //console.log(articles);
+
+    }, [])
+
+  
+    if (isLoading) {
+        return <div className="App">Loading...</div>;
+      }
+   
+
+    //convert the result Object to array
+    //const result = Object.keys(articles).map((key) => articles[key]);
+
+    //console.log(result);
+    //console.log(articles);
+    // if (isLoading) {
+    //     return <div>Loading...</div>
+    // }
 
     return (
        <Container>
-        <div>
-        
-            {result.map(item => 
+      
+            {articles.map((article, i) =>
+               
                <>
-                           <Card className="mt-2" style={{ width: 'auto' }}>
-            <Card.Body>
-                <Card.Title>{item.title}</Card.Title>
-                <Card.Subtitle className="mb-2">{item.subtitle}</Card.Subtitle>
-                <Card.Text>
-                {item.content}
-                </Card.Text>
-                <Card.Link href="#">Published: {item.published} </Card.Link>
-                <Card.Link href="#">Author: {item.author}</Card.Link>
-            </Card.Body>
-            </Card>
-                </>
-             )}
-        
-        </div>
+                 <Card key={i} className="mt-2" style={{ width: 'auto' }}>
 
-   
+                    <Card.Body>
+
+
+                        <Card.Title>{article.Title.replace(/[""]/, '')}</Card.Title>
+
+                        <Card.Text> 
+                        {
+                        article.Description
+                        }
+
+                        {"  "} 
+                        <Button value="Read More" size="sm"
+                        href={article.ArticleLINK}
+                        //target="_blank"
+                        >Read More</Button>
+                        </Card.Text>
+                        
+                       
+                    </Card.Body>
+
+                    <Card.Footer className="text-muted">
+                    
+                        <Container>
+                            <Row>
+                                <Col sm>
+                                    Published: {article.PublishedDateUTC}
+                                </Col>
+                                <Col sm>
+                                    Author: {article.Author}
+                                </Col>
+                                <Col sm>
+                                    Publisher: {article.Publisher}
+                                </Col>
+                            </Row>
+                        </Container>
+
+                    </Card.Footer>
+                   
+                </Card>
+
+                </>
+
+             )}
+
 
 
         </Container>
     )
 }
-
- 
