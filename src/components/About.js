@@ -1,8 +1,16 @@
+import {Container} from 'react-bootstrap';
+
 function About() {
     return (
-        <div>
-            This is the About page
-        </div>
+
+        <Container>
+            <h4>About</h4>
+            <div>
+                The Minimal News App created by kavvadas.dev and Spyridon Kavvadas primarilly to fullfil the need for a simple and non distractive news reader. 
+            </div>
+
+        </Container>
+
     )
 }
 

@@ -1,32 +1,31 @@
 import React from 'react';
-import './bootstrap.min.css';
+//import './bootstrap.min.css';
+import Navibar from './components/Navibar';
+import Home from './components/Home';
 import News from './components/News';
+import Select from './components/Select';
 import About from './components/About';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import './bootstrap.css';
+import {Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <>
-    <Router>
-      
-      <Switch>
-        
-        <Route path="/">
-            <News />
-        </Route>
+   <main>
+     <Navibar />
+     <Routes>
 
-        <Route path="/about">
-            <About />
-        </Route>
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/news' element={<News />} />
+        <Route exact path='/select' element={<Select />} />
+        <Route exact path='/about' element={<About />} />
 
-      </Switch>
+     </Routes>
 
-    </Router>
-    </>
+   </main>
+
   );
 }
-
 
 
 export default App;
