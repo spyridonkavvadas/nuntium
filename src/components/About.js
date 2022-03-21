@@ -6,7 +6,7 @@ function About() {
         <Container>
             <h4>About</h4>
             <div>
-                The Minimal News App created by kavvadas.dev and Spyridon Kavvadas primarilly to fullfil the need for a simple and non distractive news reader. 
+                The Minimal News App created by Spyridon Kavvadas to fullfil the need for a simple and non distractive news reader. 
             </div>
 
         </Container>

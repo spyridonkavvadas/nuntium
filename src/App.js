@@ -1,11 +1,9 @@
 import React from 'react';
-//import './bootstrap.min.css';
 import Navibar from './components/Navibar';
 import Home from './components/Home';
 import News from './components/News';
 import Select from './components/Select';
 import About from './components/About';
-
 import './bootstrap.css';
 import {Routes, Route} from 'react-router-dom';
 
