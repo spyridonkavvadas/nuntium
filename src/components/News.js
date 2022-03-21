@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-
 export default function News() {
     // Empty array in useState
     //const [isLoading, setLoading] = useState(true);
@@ -11,19 +10,10 @@ export default function News() {
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        //const API_KEY = '0c71072a6c3a4878b1d35cc733032ade';
         const options = {
             method: 'GET',
             url: 'http://localhost:5000/news'
-            // ,
-            // params: {access_key: 'bc9a37a661bd0084e1af273d5c732ef3', languages: 'en', countries: 'us', limit: '30'}
-            // ,
-            // headers: {
-            //   'x-rapidapi-host': 'google-news.p.rapidapi.com',
-            //   'x-rapidapi-key': '4b9c29964amshe4bdc3028b52ceap19c2dbjsn674d54c53ed5'
-            // }
           };
-
 
           axios.request(options)
            .then(function (response) {
@@ -34,7 +24,6 @@ export default function News() {
               console.error(error);
           });
 
-        //console.log(articles);
 
     }, [])
 
@@ -42,16 +31,6 @@ export default function News() {
     if (isLoading) {
         return <div className="App">Loading...</div>;
       }
-   
-
-    //convert the result Object to array
-    //const result = Object.keys(articles).map((key) => articles[key]);
-
-    //console.log(result);
-    //console.log(articles);
-    // if (isLoading) {
-    //     return <div>Loading...</div>
-    // }
 
     return (
        <Container>

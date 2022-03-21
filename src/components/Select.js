@@ -15,23 +15,13 @@ const [SelectedLanguages, setSelectedLanguages] = useState([]);
 const [SelectedCountries, setSelectedCountries] = useState([]);
 
 
-
-
 useEffect(() => {
-    //const API_KEY = '0c71072a6c3a4878b1d35cc733032ade';
-    const options = {
+
+  const options = {
         method: 'GET',
         url: 'http://localhost:5000/news'
-        // ,
-        // params: {access_key: 'bc9a37a661bd0084e1af273d5c732ef3', languages: 'en', countries: 'us', limit: '30'}
-        // ,
-        // headers: {
-        //   'x-rapidapi-host': 'google-news.p.rapidapi.com',
-        //   'x-rapidapi-key': '4b9c29964amshe4bdc3028b52ceap19c2dbjsn674d54c53ed5'
-        // }
       };
 
-      // const {_id, Title, ArticleLINK, PublishedDateUTC, Publisher, Country,Category, Language, Description, ImageURL} = 
      axios.request(options)
        .then(function (response) {
 
@@ -41,9 +31,6 @@ useEffect(() => {
       }).catch(function (error) {
           console.error(error);
       });
-
-    //console.log(SelectedProviders);
-    // console.log(Title);
 
 }, [])
 
@@ -62,13 +49,10 @@ if (isLoading) {
     const uniqueLanguage = getUniqueListBy(NewsProviders, 'Language')
     const uniqueCountry = getUniqueListBy(NewsProviders, 'Country')
 
-
   return (
     <Container>
-    
-
     <h4>Select News Parameters</h4>
-
+ 
     {/* You have selected News from: */}
     <Card style={{ width: 'auto' }}>
       <Card.Header className="text-warning">You have selected News from:</Card.Header>
@@ -128,9 +112,7 @@ if (isLoading) {
         </Card.Body>
     </Card>
 
-
-
-
+    <h6>Push any button bellow to select news properties</h6>
 
     {/* Select News Provider */}
     <Card style={{ width: 'auto' }}>
@@ -181,21 +163,17 @@ if (isLoading) {
         
         {uniqueLanguage.map((uniqueLang, i) =>
           <>
-
              <button type="button" className="btn btn-primary btn-sm m-1" value="Add" onClick=
               {() => {
                 setSelectedLanguages([...SelectedLanguages, uniqueLang.Language]);  }
                 }> {uniqueLang.Language} 
               </button>
-
-
           </>
 
         )}
 
         </Card.Body>
     </Card>
-
 
     <Card style={{ width: 'auto' }}>
       <Card.Header className="text-warning">Select Country</Card.Header>
